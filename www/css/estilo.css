@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+.botones
+{border-width:1px;}
+.oculto
+{
+    visibility:hidden;
+    display:none;
+}
+.visible
+{
+    visibility:visible;
+    display:block;
+}
+body
+{background-color:green;}
+#visor1, #visor2
+{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+#pant1
+{height:100vh;}
+#visor1
+{height:100%;}
+#e1
+{margin-top:10px;margin-bottom:10px;height:50px;width:80vw;font-size:20px;}
+#e2
+{margin-top:10px;margin-bottom:10px;height:50px;width:80vw;font-size:20px;}
+#p24-30
+{margin-top:10px;margin-bottom:10px;width:80vw;height:50px;display:flex;justify-content:space-between;}
+#a24
+{padding-right:20px;padding-left:20px;height:100%;width:40%;font-size:20px;}
+#a30
+{padding-right:20px;padding-left:20px;height:100%;width:40%;font-size:20px;}
+#inicio
+{margin-top:10px;margin-bottom:10px;padding-left:70px;padding-right:70px;width:80vw;height:50px;font-size:20px;}
+.resaltado
+{border-width:3px;}
+.paralelos
+{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+.div1-2
+{
+    display:flex;
+    justify-content:space-between;
+}
+#equipos
+{
+    display:flex;
+    align-items:center;
+}
+#div1
+{
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content:center;
+}
+#div2
+{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+}
+span
+{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size:xx-large;
+}
+.div7-8-9
+{
+    display:flex;
+    justify-content:space-between;
+}
+#div8
+{
+    display:flex;
+    flex-direction:column;
+}
+#pmax
+{font-family: 'Josefin Sans', sans-serif;}
+#div7, #div9
+{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+}
+.fuenterojo
+{color:red;}
+#div3, #div4, #div5, #div6
+{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.imagen
+{width:60%;}
+#fin
+{height:100%;}

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilo.css">
+    <title>Truco</title>
+</head>
+<body>
+    <div class="visible" id="pant1">
+        <div id="visor1">
+            <input type="text" id="e1" value="" placeholder="Equipo 1">
+            <input type="text" id="e2" value="" placeholder="Equipo 2">
+            <div id="p24-30">
+                <input type="button" id="a24" value="a 24">
+                <input type="button" class="resaltado" id="a30" value="a 30">
+            </div>
+            <input type="button" id="inicio" value="Iniciar">
+        </div>
+    </div>
+
+    <div class="oculto" id="pant2">
+        <div id="visor2">
+            <div>
+                <div class="paralelos div1-2" id="equipos">
+                    <div id="div1">
+                        <input type="button" id="s1" value="+">
+                        <span id="ne1"></span>
+                    </div>
+                    <div class="paralelos" id="div2">
+                        <span id="ne2"></span>
+                        <input type="button" id="s2" value="+"><br/>
+                    </div>
+                </div>
+                <div class="paralelos div3-4">
+                    <div id="div3">
+                        <image id="11" class="imagen" src="images/0.png"></image>
+                        <image id="12" class="imagen" src="images/0.png"></image>
+                        <image id="13" class="imagen" src="images/0.png"></image>
+                    </div>
+                    <div id="div4">
+                        <image id="21" class="imagen" src="images/0.png"></image>
+                        <image id="22" class="imagen" src="images/0.png"></image>
+                        <image id="23" class="imagen" src="images/0.png"></image>
+                    </div>
+                </div>
+                <hr color="#005800">
+                <div class="paralelos">
+                    <div id="div5">
+                        <image id="14" class="imagen" src="images/0.png"></image>
+                        <image id="15" class="imagen" src="images/0.png"></image>
+                        <image id="16" class="imagen" src="images/0.png"></image>
+                    </div>
+                    <div id="div6">
+                        <image id="24" class="imagen" src="images/0.png"></image>
+                        <image id="25" class="imagen" src="images/0.png"></image>
+                        <image id="26" class="imagen" src="images/0.png"></image>
+                    </div>
+                </div>
+                <div class="div7-8-9">
+                    <div id="div7">
+                        <input type="button" id="r1" value="-">
+                        <span id="pe1">0</span>
+                    </div>
+                    <div id="div8">
+                        <span id="pmax"></span>
+                        <input type="button" id="fin" value="Fin">
+                    </div>
+                    <div id="div9">
+                        <span id="pe2">0</span>
+                        <input type="button" id="r2" value="-">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $('input[type="button"]').addClass("botones");
+            
+            var max=30;
+            var puntos1 = 0;
+            var puntos2 = 0;
+            
+            $("#a24").on("click",function()
+            {
+                $("#pmax").html("a 24");
+                max = 24;
+                $("#a30").removeClass("resaltado");
+                $("#a24").addClass("resaltado");
+            })
+            $("#a30").on("click",function()
+            {
+                $("#pmax").html("a 30");
+                max = 30;
+                $("#a24").removeClass("resaltado");
+                $("#a30").addClass("resaltado");
+            })
+            $("#inicio").on("click",function()
+            {
+                $("#ne1").html($("#e1").val());
+                $("#ne2").html($("#e2").val());
+                $("#pant1").removeClass("visible").addClass("oculto");
+                $("#pant2").removeClass("oculto").addClass("visible");
+            })
+            $("#s1").on("click",function()
+            {
+                operacion("s1");
+                puntos(1);
+                rojito(1);
+            })
+            $("#s2").on("click",function()
+            {
+                operacion("s2");
+                puntos(2);
+                rojito(2);
+            })
+            $("#r1").on("click",function()
+            {
+                operacion("r1");
+                puntos(1);
+                rojito(1);
+            })
+            $("#r2").on("click",function()
+            {
+                operacion("r2");
+                puntos(2);
+                rojito(2);
+            })
+            $("#fin").on("click",function()
+            {
+                max = 30;
+                puntos1 = 0;
+                puntos2 = 0;
+                $("#pe1").html("0");
+                $("#pe2").html("0");
+                $("#pe1").removeClass("fuenterojo");
+                $("#pe2").removeClass("fuenterojo");
+                $("#a30").addClass("resaltado");
+                $("#a24").removeClass("resaltado");
+                $(".imagen").attr("src","images/0.png");
+                $("#pmax").html("");
+                $("#ne1").html("");
+                $("#ne2").html("");
+                $("#pant1").removeClass("oculto").addClass("visible");
+                $("#pant2").removeClass("visible").addClass("oculto");
+                $("#e1").val("");
+                $("#e2").val("");
+            })
+            
+            function rojito(n)
+            {
+                var rojin = parseInt($("#pe"+n).text());
+                if(max==30)
+                {
+                    if(rojin==30)
+                    {
+                        $("#pe"+n).addClass("fuenterojo");
+                    }
+                    else if(rojin!=30)
+                    {
+                        $("#pe"+n).removeClass("fuenterojo");
+                    }
+                }
+                if(max==24)
+                {
+                    if(rojin==24)
+                    {
+                        $("#pe"+n).addClass("fuenterojo");
+                    }
+                    else if(puntos2!=24)
+                    {
+                        $("#pe"+n).removeClass("fuenterojo");
+                    }
+                }
+            }
+
+            function operacion(n)
+            {
+                switch(n)
+                {
+                    case "s1":
+                        if(puntos1 < max)
+                        {
+                            puntos1+=1;
+                        }
+                        break
+                    case "s2":
+                        if(puntos2 < max)
+                        {
+                            puntos2+=1;
+                        }
+                        break
+                    case "r1":
+                        if(puntos1 > 0)
+                        {
+                            puntos1-=1;
+                        }
+                        break
+                    case "r2":
+                        if(puntos2 > 0)
+                        {
+                            puntos2-=1;
+                        }
+                        break
+                }
+                $("#pe1").html(puntos1);
+                $("#pe2").html(puntos2);
+            }
+
+            function puntos(n)
+            {
+                var comp = parseInt($("#pe"+n).text());
+                var mitad = 0;
+                if(max==30)
+                {
+                    for(i=1;i<7;i++)
+                    {
+                        if(comp>=5)
+                        {
+                            $("#"+n+i).attr("src","images/5.png");
+                            comp-=5;
+                        }
+                        else
+                        {
+                            $("#"+n+i).attr("src","images/"+comp+".png");
+                            comp=0;
+                        }
+                    }
+                }
+                if(max==24)
+                {
+                    
+                    for(i=1;i<7;i++)
+                    {
+                        if(comp>=2 && i==3)
+                        {
+                            $("#"+n+i).attr("src","images/2.png");
+                            comp-=2;
+                        }
+                        else
+                        {
+                            if(comp>=5)
+                            {
+                                $("#"+n+i).attr("src","images/5.png");
+                                comp-=5;
+                            }
+                            else
+                            {
+                                $("#"+n+i).attr("src","images/"+comp+".png");
+                                comp=0;
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
